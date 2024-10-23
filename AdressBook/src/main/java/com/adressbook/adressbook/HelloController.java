@@ -35,6 +35,11 @@ public class HelloController {
 
     @FXML
     private TextField textField;
+    @FXML
+    private Button btnExit;
+
+    @FXML
+    private Button btnOtherLabs;
 
     @FXML
     void deleting(ActionEvent event) {
@@ -71,11 +76,37 @@ public class HelloController {
     void searching(ActionEvent event) {
 
     }
+    @FXML
+    void showingOtherLabs(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("showOtherLabs.fxml"));
+
+        try {
+            Stage stage = new Stage();
+            Scene scene=new Scene(fxmlLoader.load(),600,600);
+            stage.setScene(scene);
+
+            stage.setTitle("інша Лаба");
+            stage.setMinHeight(600);
+            stage.setMinWidth(600);
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(btnOtherLabs.getScene().getWindow());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void Exit(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {
         assert btnAdd != null : "fx:id=\"btnAdd\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert btnDel != null : "fx:id=\"btnDel\" was not injected: check your FXML file 'hello-view.fxml'.";
+        assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'hello-view.fxml'.";
+        assert btnOtherLabs != null : "fx:id=\"btnOtherLabs\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert btnRed != null : "fx:id=\"btnRed\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert btnSearch != null : "fx:id=\"btnSearch\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert textField != null : "fx:id=\"textField\" was not injected: check your FXML file 'hello-view.fxml'.";
@@ -92,17 +123,17 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    @FXML
-    void information_Alert(ActionEvent event){
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Видалення");
-
-        alert.setContentText("Ви впевнені, що хочете видаолити запис? ");
-
-        if (alert.showAndWait().get()==null){
-            this.label.set
-        }
-    }
+//    @FXML
+//    void information_Alert(ActionEvent event){
+//
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Видалення");
+//
+//        alert.setContentText("Ви впевнені, що хочете видаолити запис? ");
+//
+//        if (alert.showAndWait().get()==null){
+//            this.label.set
+//        }
+//    }
 
 }

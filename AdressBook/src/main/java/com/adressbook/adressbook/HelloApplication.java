@@ -14,8 +14,12 @@ public class HelloApplication extends Application {
         Parent root =FXMLLoader.load(getClass().getResource("hello-view.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setMinHeight(600);
-        primaryStage.setMinWidth(550);
-        primaryStage.setScene(new Scene(root,300,275));
+        primaryStage.setMinWidth(600);
+
+        Scene scene =new Scene(root,600,600);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
