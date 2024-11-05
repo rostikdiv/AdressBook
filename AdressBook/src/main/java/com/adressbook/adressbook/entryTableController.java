@@ -1,13 +1,23 @@
 package com.adressbook.adressbook;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class entryTableController {
+    ColectionAdressBook colectionAdressBook;
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+    Parent root = loader.load();
+    HelloController helloController = loader.getController();
 
     @FXML
     private ResourceBundle resources;
@@ -27,15 +37,26 @@ public class entryTableController {
     @FXML
     private TextField textFieldPIB;
 
-    @FXML
-    void metCancel(ActionEvent event) {
-
+    public entryTableController() throws IOException {
+    }
+    public void setAdressBook(ColectionAdressBook adressBook) {
+        this.colectionAdressBook = adressBook;
     }
 
     @FXML
     void metOk(ActionEvent event) {
-
+        colectionAdressBook.add(new Person(textFieldPIB.getText(),textFieldNumber.getText()));
+        //helloController.initTable();
+        metCancel(event);
     }
+    @FXML
+    void metCancel(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.hide();
+    }
+
+
 
     @FXML
     void initialize() {
